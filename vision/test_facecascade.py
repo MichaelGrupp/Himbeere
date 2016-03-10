@@ -23,8 +23,6 @@ time.sleep(0.1)
  
 # capture frames from the camera
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-	# grab the raw NumPy array representing the image, then initialize the timestamp
-	# and occupied/unoccupied text
 	image = frame.array
 	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
@@ -34,6 +32,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         for (x,y,w,h) in faces:
                 print('found')
                 cv2.rectangle(image, (x,y), (x+w, y+h), (255,0,0), 2)
+                # optional: eye detection
                 #roi_gray = gray[y:y+h, x:x+w]
                 #roi_color = image[y:y+h, x:x+w]
                 #eyes = eyeCascade.detectMultiScale(roi_gray)
